@@ -20,6 +20,11 @@ public class SpringConfiguration {
     return new BOParameterInteger("markus.timeout");
   }
 
+  @Bean @BOParameter("markus.url")
+  public BOParameterString markusUrl() {
+    return new BOParameterString("markus.url");
+  }
+
   @Bean
   public BOParametersStorage boParametersStorage() {
     Map<String, Object> map = new HashMap<>();

@@ -4,22 +4,22 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class BOParameterInteger implements BOParameterSource<Integer> {
+public class BOParameterString implements BOParameterSource<String> {
 
-  private Logger logger = LoggerFactory.getLogger(BOParameterInteger.class);
+  private Logger logger = LoggerFactory.getLogger(BOParameterString.class);
 
   @Autowired
   private BOParametersStorage storage;
 
   private String key;
 
-  public BOParameterInteger(String key) {
+  public BOParameterString(String key) {
     this.key = key;
   }
 
   @Override
-  public Integer getValue() {
-    return (Integer) storage.getValue(key);
+  public String getValue() {
+    return (String) storage.getValue(key);
   }
 
   @Override
@@ -27,6 +27,7 @@ public class BOParameterInteger implements BOParameterSource<Integer> {
     return key;
   }
 
+  @Override
   public void onEventChange() {
     logger.info("onEventChange " + key + " newValue " + getValue());
   }

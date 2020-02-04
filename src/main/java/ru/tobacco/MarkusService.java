@@ -13,8 +13,12 @@ public class MarkusService implements InitializingBean {
   @BOParameter("markus.timeout")
   private BOParameterInteger timeout;
 
+  @BOParameter("markus.url")
+  private BOParameterString url;
+
   @Override
   public void afterPropertiesSet() throws Exception {
     logger.info("Markus-параметер timeout " + timeout.getValue());
+    logger.info("Markus-параметер url " + url.getValue());
   }
 }
