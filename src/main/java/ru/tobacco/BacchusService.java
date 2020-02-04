@@ -9,9 +9,9 @@ import ru.tobacco.parameters.MarkusTimeout;
 import ru.tobacco.parameters.MarkusURL;
 
 @Service
-public class MarkusService implements InitializingBean {
+public class BacchusService implements InitializingBean {
 
-  private Logger logger = LoggerFactory.getLogger(MarkusService.class);
+  private Logger logger = LoggerFactory.getLogger(BacchusService.class);
 
   @Autowired @MarkusTimeout
   private BOParameterInteger timeout;

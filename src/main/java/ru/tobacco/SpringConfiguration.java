@@ -7,35 +7,32 @@ package ru.tobacco;
 
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
-import ru.tobacco.parameters.MarkusTimeoutParameter;
-import ru.tobacco.parameters.MarkusURLParameter;
+import org.springframework.context.annotation.ComponentScan;
+import ru.tobacco.parameters.MarkusTimeout;
+import ru.tobacco.parameters.MarkusURL;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @SpringBootConfiguration
+@ComponentScan
 public class SpringConfiguration {
 
-  @Bean @MarkusTimeoutParameter
+  @Bean @MarkusTimeout
   public BOParameterInteger markusTimeout() {
-    return new BOParameterInteger(MarkusTimeoutParameter.KEY);
+    return new BOParameterInteger(MarkusTimeout.KEY);
   }
 
-  @Bean @MarkusURLParameter
+  @Bean @MarkusURL
   public BOParameterString markusUrl() {
-    return new BOParameterString(MarkusURLParameter.KEY);
+    return new BOParameterString(MarkusURL.KEY);
   }
 
   @Bean
   public BOParametersStorage boParametersStorage() {
     Map<String, Object> map = new HashMap<>();
-    map.put(MarkusTimeoutParameter.KEY, 500);
-    map.put(MarkusURLParameter.KEY, "http://markus");
+    map.put(MarkusTimeout.KEY, 500);
+    map.put(MarkusURL.KEY, "http://markus");
     return new BOParametersStorage(map);
-  }
-
-  @Bean
-  public MarkusService markusService() {
-    return new MarkusService();
   }
 }
