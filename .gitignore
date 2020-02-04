@@ -1,0 +1,12 @@
+*.iml
+target
+*.classpath
+*.project
+*.log
+*.log.[0-9]*
+.settings
+.DS_Store
+.idea
+/pos/pos-assembly-prd/*.eml
+.repository
+.repository/*
