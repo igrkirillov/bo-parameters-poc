@@ -7,7 +7,8 @@ package ru.tobacco;
 
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
+import ru.tobacco.parameters.MarkusTimeoutParameter;
+import ru.tobacco.parameters.MarkusURLParameter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,21 +16,21 @@ import java.util.Map;
 @SpringBootConfiguration
 public class SpringConfiguration {
 
-  @Bean @BOParameter("markus.timeout")
+  @Bean @MarkusTimeoutParameter
   public BOParameterInteger markusTimeout() {
-    return new BOParameterInteger("markus.timeout");
+    return new BOParameterInteger(MarkusTimeoutParameter.KEY);
   }
 
-  @Bean @BOParameter("markus.url")
+  @Bean @MarkusURLParameter
   public BOParameterString markusUrl() {
-    return new BOParameterString("markus.url");
+    return new BOParameterString(MarkusURLParameter.KEY);
   }
 
   @Bean
   public BOParametersStorage boParametersStorage() {
     Map<String, Object> map = new HashMap<>();
-    map.put("markus.timeout", 500);
-    map.put("markus.url", "http://markus");
+    map.put(MarkusTimeoutParameter.KEY, 500);
+    map.put(MarkusURLParameter.KEY, "http://markus");
     return new BOParametersStorage(map);
   }
 

@@ -4,16 +4,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;
+import ru.tobacco.parameters.MarkusTimeoutParameter;
+import ru.tobacco.parameters.MarkusURLParameter;
 
 @Service
 public class MarkusService implements InitializingBean {
 
   private Logger logger = LoggerFactory.getLogger(MarkusService.class);
 
-  @BOParameter("markus.timeout")
+  @MarkusTimeoutParameter
   private BOParameterInteger timeout;
 
-  @BOParameter("markus.url")
+  @MarkusURLParameter
   private BOParameterString url;
 
   @Override
