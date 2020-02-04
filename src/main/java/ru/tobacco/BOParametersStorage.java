@@ -24,7 +24,7 @@ public class BOParametersStorage implements ApplicationContextAware {
     Map<String, BOParameterSource> beans = applicationContext.getBeansOfType(BOParameterSource.class);
     beans.values().stream().forEach(bean -> {
       if (newValues.containsKey(bean.getKey())) {
-        bean.onEventChange();
+        bean.onEventChange(newValues.get(bean.getKey()));
       }
     });
   }

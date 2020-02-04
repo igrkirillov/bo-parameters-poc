@@ -4,6 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+
 public class BOParameterInteger implements BOParameterSource<Integer> {
 
   private Logger logger = LoggerFactory.getLogger(BOParameterInteger.class);
@@ -12,6 +16,8 @@ public class BOParameterInteger implements BOParameterSource<Integer> {
   private BOParametersStorage storage;
 
   private String key;
+
+  private List<Consumer<Integer>> listeners = new ArrayList<>();
 
   public BOParameterInteger(String key) {
     this.key = key;
@@ -27,7 +33,13 @@ public class BOParameterInteger implements BOParameterSource<Integer> {
     return key;
   }
 
-  public void onEventChange() {
-    logger.info("onEventChange " + key + " newValue " + getValue());
+  public void onEventChange(Integer newValue) {
+    logger.info("onEventChange " + key + " newValue " + newValue);
+    listeners.forEach(l -> l.accept(newValue));
+  }
+
+  @Override
+  public void addListener(Consumer<Integer> listener) {
+    listeners.add(listener);
   }
 }

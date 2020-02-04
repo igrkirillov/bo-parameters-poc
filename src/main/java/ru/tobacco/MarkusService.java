@@ -20,5 +20,6 @@ public class MarkusService implements InitializingBean {
   public void afterPropertiesSet() throws Exception {
     logger.info("Markus-параметер timeout " + timeout.getValue());
     logger.info("Markus-параметер url " + url.getValue());
+    timeout.addListener(newTimeout -> logger.info("Пришло событие о новом timeout " + newTimeout));
   }
 }
